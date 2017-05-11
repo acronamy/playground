@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc --project gulp.tsconfig.json --listFiles && gulp",
-    "start": "node ./app/server.js"
+    "build:portfolio": "webpack --watch --config ./webpack.global.js --env.application=portfolio --env.server=true --env.NODE_ENV=develop --env.title=development",
+    "local": "node ./app/server.js",
+    "server:start": "node ./modules/server/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,20 +15,32 @@
     "datauri": "^1.0.5",
     "express": "^4.15.2",
     "jeet": "^7.1.0",
-    "vue": "^2.3.0"
+    "serve-favicon": "^2.4.2",
+    "vue": "^2.3.0",
+    "yargs": "^7.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.0.35",
-    "@types/gulp": "^4.0.2",
+    "@types/node": "^7.0.18",
     "@types/vue": "^2.0.0",
-    "gulp": "^3.9.1",
-    "gulp-plumber": "^1.1.0",
-    "gulp-pug": "^3.3.0",
-    "gulp-stylus": "^2.6.0",
-    "gulp-typescript": "^3.1.6",
-    "kouto-swiss": "^1.1.0",
+    "autoprefixer": "^7.0.0",
+    "awesome-typescript-loader": "^3.1.3",
+    "cheerio": "^0.22.0",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "lerna": "^2.0.0-rc.4",
     "node-sass": "^4.5.2",
+    "pug": "^2.0.0-rc.1",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.17.0",
     "typescript": "^2.3.2",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.5.0",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-livereload-plugin": "^0.11.0",
     "yargs": "^7.1.0"
   }
 }
