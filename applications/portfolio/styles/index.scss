@@ -1,3 +1,37 @@
+//must be imported by custom loader and required in index.ts
+@import "../config/style.ts";
+
+@function query($key){
+     @return unquote(map-get($style, $key ))
+}
+
+@import '~normalize-scss/sass/_normalize.scss';
+
+$font-sans:             config( "typeography.sans" );
+$font-serif:            config( "typeography.serif" );
+$font-mono:             config( "typeography.serif" );
+$text-color:            config( "typeography.text-color" );
+$base-vertical-unit:    config( "typeography.base-vertical-unit" );
+$base-line-multi:       config( "typeography.base-line-multi" );
+$browser-context:       config( "typeography.browser-context" ); 
+$base-font-size:        config( "typeography.base-font-size" );
+$ms-ratio:              config( "typeography.ms-ratio" );
+$paragraph-indent:      config( "typeography.paragraph-indent" );
+$paragraph-justify:     config( "typeography.paragraph-justify" );
+$load-typesetted:       config( "typeography.load-typesetted" );
+$global-init:           config( "typeography.global-init" );
+
+@import "./mixins/em";
+@import "./mixins/parallax";
+@import '~jeet/scss/index';
+@import "~typesettings/_typesettings";
+@import "./components/button.scss";
+
 body{
-    background: #fff;
+    background-color: config( "skin.base" );
+    background-image: url("/portfolio/test.jpg");
+}
+
+.hide{
+    display: none;
 }

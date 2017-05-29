@@ -1,19 +1,21 @@
-/**
- * Global plugins
-*/
-const autoprefixer = require("autoprefixer"),
-        CheckerPlugin = require('awesome-typescript-loader'),
-        ExtractTextPlugin = require("extract-text-webpack-plugin"),
-        LiveReloadPlugin = require('webpack-livereload-plugin'),
-        HtmlWebpackPlugin = require('html-webpack-plugin');
+import * as autoprefixer from "autoprefixer";
+import * as ExtractTextPlugin from "extract-text-webpack-plugin";
+import * as LiveReloadPlugin from "webpack-livereload-plugin";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as webpack from "webpack";
 
+import * as cheerio from "cheerio";
+import * as fs from "fs";
+import * as path from "path";
+import * as yargs from "yargs";
 
-const cheerio = require("cheerio");
-const fs = require("fs");
-const path = require("path");
-const applicationMainfile = `${process.env.application}.${process.env.version}.js`;
-const applicationSrcPath = path.join(process.cwd(),"applications",process.env.application, "templates")
-const applicationDistPath = path.join(process.cwd(),"public","applications",process.env.application)
+const env = yargs.argv.env
+
+const styleConfig = path.join(process.cwd(), "applications", env.application, "config", "style.ts");
+
+const applicationMainfile = `${env.application}.${env.version}.js`;
+const applicationSrcPath = path.join(process.cwd(),"applications",env.application, "templates")
+const applicationDistPath = path.join(process.cwd(),"public","applications",env.application)
 //head
 const applicationHead = path.join(applicationSrcPath, "head.html");
 const applicationHeadExists = fs.existsSync(applicationHead);
@@ -21,7 +23,7 @@ const applicationHeadExists = fs.existsSync(applicationHead);
 const applicationBody = path.join(applicationSrcPath, "body.html");
 const applicationBodyExists = fs.existsSync(applicationBody);
 //fs.readFileSync( applicationBody, "utf8" )
-function MyPlugin(options) {}
+function MyPlugin() {}
 
 MyPlugin.prototype.apply = function(compiler) {
   // ...
@@ -45,7 +47,6 @@ MyPlugin.prototype.apply = function(compiler) {
         callback(null, hook);
     });
   });
-
 };
 
 
@@ -55,14 +56,14 @@ MyPlugin.prototype.apply = function(compiler) {
 
 const options = {
     typescript:{
-        configFileName:"tsconfig.global.js"
+        configFileName:path.join(process.cwd(),"applications",env.application, "tsconfig.json")
     },
     sass:{
         filename: "[name].[contenthash].css",
-        disable: process.env.NODE_ENV === "development"
+        disable: env.NODE_ENV === "development"
     },
     livereload:{
-
+        appendScriptTag:false
     },
     html:{
         filename: 'index.html',
@@ -70,8 +71,7 @@ const options = {
     }
 }
 
-module.exports = [
-    //new CheckerPlugin(typescript)
+export const pluginsConfig = [
     new ExtractTextPlugin(options.sass),
     new LiveReloadPlugin(options.livereload),
     new HtmlWebpackPlugin(options.html),

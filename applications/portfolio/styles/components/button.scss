@@ -1,0 +1,166 @@
+
+.button{
+    top:40px;
+    cursor: pointer;
+    transition:.3s all ease-in-out;
+    position: relative;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    @if #{ config("buttons.basic") }{
+        &#{config("buttons.basic.class-name")}{
+            // Text
+            text-transform: #{config("buttons.basic.text-transform")};
+            
+            // 
+            //  Apearance
+            //
+            //background color
+            
+            background-color: base(config("buttons.basic.background"));
+            //text color
+            color: #{auto( base(config("buttons.basic.background")) )};
+            //Use borders?
+            @if config("buttons.basic.border") == true{
+                border-width: #{config("skin.border.hairline.weight")};
+                border-style: solid;
+                border-color: #{config("skin.border.hairline.color")};
+            }
+            @else{
+                border:0;
+            }
+            //Use outline?
+            @if config("buttons.basic.outline") == true{
+                &:focus{
+                    outline: primary(300) auto 5px;
+                }
+            }
+            @else{
+                &:focus{
+                    outline: 0;
+                }
+            }
+            //Use shadows?
+            @if config("buttons.basic.shadow") == true{
+                box-shadow: boxShadow( config("buttons.basic.use-shadow") );
+                &:hover{
+                    box-shadow: boxShadow( config("buttons.basic.states.hover.use-shadow") );
+                }
+            }
+            @else{
+                box-shadow:0;
+            }
+            //Border has radius?
+            border-radius: #{config("buttons.basic.roundness")};
+            //size
+            $default-size:config("buttons.basic.default-size");
+            padding-top:#{config("buttons.basic.size-varient."+$default-size+".padding-vertical")};
+            padding-bottom:#{config("buttons.basic.size-varient."+$default-size+".padding-vertical")};
+            padding-left:#{config("buttons.basic.size-varient."+$default-size+".padding-horizontal")};
+            padding-right:#{config("buttons.basic.size-varient."+$default-size+".padding-horizontal")};
+            font-size: #{config("buttons.basic.size-varient."+$default-size+".font-size")};
+            font-weight: #{config("buttons.basic.text-weight")};
+            // States (not including conditionals)
+            &:hover{
+                background-color:#{base(config('buttons.basic.states.hover.background'))};
+            }
+            &:focus{
+                
+            }
+            .button-text{
+                &:empty{
+                    &:before{
+                        content:'#{config("buttons.basic.empty-text")}';
+                    }
+                }
+            }
+        }
+    }
+
+    @if #{ config("buttons.primary") }{
+        &#{config("buttons.primary.class-name")}{
+            // Text
+            text-transform: #{config("buttons.primary.text-transform")};
+            
+            // 
+            //  Apearance
+            //
+            //background color
+            
+            background-color: base(config("buttons.primary.background"));
+            //text color
+            color: #{auto( base(config("buttons.primary.background")) )};
+            //Use borders?
+            @if config("buttons.primary.border") == true{
+                border-width: #{config("skin.border.hairline.weight")};
+                border-style: solid;
+                border-color: #{config("skin.border.hairline.color")};
+            }
+            @else{
+                border:0;
+            }
+            //Use outline?
+            @if config("buttons.primary.outline") == true{
+                &:focus{
+                    outline: primary(300) auto 5px;
+                }
+            }
+            @else{
+                &:focus{
+                    outline: 0;
+                }
+            }
+            //Use shadows?
+            @if config("buttons.primary.shadow") == true{
+                box-shadow: boxShadow( config("buttons.primary.use-shadow") );
+                &:hover{
+                    box-shadow: boxShadow( config("buttons.primary.states.hover.use-shadow") );
+                }
+            }
+            @else{
+                box-shadow:0;
+            }
+            //Border has radius?
+            border-radius: #{config("buttons.primary.roundness")};
+            //size
+            $default-size:config("buttons.primary.default-size");
+            padding-top:#{config("buttons.primary.size-varient."+$default-size+".padding-vertical")};
+            padding-bottom:#{config("buttons.primary.size-varient."+$default-size+".padding-vertical")};
+            padding-left:#{config("buttons.primary.size-varient."+$default-size+".padding-horizontal")};
+            padding-right:#{config("buttons.primary.size-varient."+$default-size+".padding-horizontal")};
+            font-size: #{config("buttons.primary.size-varient."+$default-size+".font-size")};
+            font-weight: #{config("buttons.primary.text-weight")};
+            // States (not including conditionals)
+            &:hover{
+                background-color:#{base(config('buttons.primary.states.hover.background'))};
+            }
+            &:focus{
+                
+            }
+            .button-text{
+                &:empty{
+                    &:before{
+                        content:'#{config("buttons.primary.empty-text")}';
+                    }
+                }
+            }
+        }
+    }
+
+
+    .button-text{
+        z-index: 2;
+        position: relative;
+    }
+    .button-paint-layer{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index: 1;
+    }
+}

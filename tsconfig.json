@@ -6,11 +6,15 @@
         "noImplicitAny": false,
         "sourceMap": false
     },
-    "include": [
-        "app/**/*"
+    "files": [
+        "./webpack.global.ts",
+        "./webpack/alias.config.ts",
+        "./webpack/extensions.config.ts",
+        "./webpack/plugins.config.ts",
+        "./webpack/rules.config.ts"
     ],
+    "include":[],
     "exclude":[
         "node_modules"
-    ],
-    "awesomeTypescriptLoaderOptions": {}
+    ]
 }

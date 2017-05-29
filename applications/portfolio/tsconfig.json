@@ -4,10 +4,16 @@
         "moduleResolution": "node",
         "target": "es6",
         "noImplicitAny": false,
-        "sourceMap": false
+        "sourceMap": false,
+        "listFiles":true,
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": ["./config/components/*"],
+            "@interfaces/*": ["./config/interfaces/*"]
+        }
     },
     "include": [
-       
+       "index.ts"
     ],
     "exclude":[
         "node_modules"

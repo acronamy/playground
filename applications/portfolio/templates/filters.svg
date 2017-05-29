@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="0">
+
+	<filter id="blur">
+        <feGaussianBlur in="FillPaint " stdDeviation="2" />
+    </filter>
+
+</svg>
