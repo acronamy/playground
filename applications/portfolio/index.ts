@@ -1,19 +1,21 @@
 //html for liverealod
-let filters = require("@templates/filters.svg")
+let filters = require("@templates/svg/filters.svg");
 require("@templates/head.html");
 require("@templates/body.html");
 
-let filterEl = document.createElement("div")
-filterEl.innerHTML = filters;
-filterEl.style.display = "none";
-filterEl.setAttribute("id","filters");
-document.body.appendChild(filterEl);
+let svgAssets = document.createElement("div")
+svgAssets.innerHTML = [
+    filters,
+].join("");
+svgAssets.style.display = "none";
+svgAssets.setAttribute("id","svg-assets");
+document.body.appendChild(svgAssets);
 
 //styles
+
 require("@styles/index.scss");
 
-//Bar
-require("@styles/bar.scss");
+//components
 require("@styles/components/button.scss");
 
 const components = require("@config/style.ts").default.componentsJs

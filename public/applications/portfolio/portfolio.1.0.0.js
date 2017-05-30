@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -308,7 +308,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(21);
+	fixUrls = __webpack_require__(18);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -1794,10 +1794,10 @@ else {
 Object.defineProperty(exports, "__esModule", { value: true });
 //Components
 const skin_component_1 = __webpack_require__(0);
-const grid_component_1 = __webpack_require__(13);
-const typeography_component_1 = __webpack_require__(14);
-const viewport_component_1 = __webpack_require__(15);
-const button_component_1 = __webpack_require__(12);
+const grid_component_1 = __webpack_require__(12);
+const typeography_component_1 = __webpack_require__(13);
+const viewport_component_1 = __webpack_require__(14);
+const button_component_1 = __webpack_require__(11);
 function flattenObject(ob) {
     var toReturn = {};
     for (var i in ob) {
@@ -1888,7 +1888,7 @@ exports.buttonFx = buttonFx;
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\r\n    <div class=\"hero\">\r\n        <button class=\"button small basic\"></button>\r\n        <button class=\"button small primary\"></button>\r\n        <button class=\"button small warning\"></button>\r\n    </div>\r\n    <div class=\"main wrapper\">\r\n\r\n    </div>\r\n</body>";
+module.exports = "<body>\r\n    <div class=\"hero\">\r\n        <button class=\"button small basic\"></button>\r\n        <button class=\"button small primary\"></button>\r\n        <button class=\"button small warning\"></button>\r\n    </div>\r\n    <div class=\"main wrapper\">\r\n        <svg height=\"100\" width=\"100\">\r\n            <use href=\"#loader-4\" ></use>\r\n        </svg>\r\n    </div>\r\n</body>";
 
 /***/ }),
 /* 7 */
@@ -1903,38 +1903,7 @@ module.exports = "   <head>\r\n\r\n  </head>";
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(17);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js??ref--0-2!./bar.scss", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js??ref--0-2!./bar.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(18);
+var content = __webpack_require__(16);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1959,13 +1928,13 @@ if(false) {
 }
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(19);
+var content = __webpack_require__(17);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1990,13 +1959,13 @@ if(false) {
 }
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"blur\"><feGaussianBlur in=\"FillPaint \" stdDeviation=\"2\"></feGaussianBlur></filter></svg>"
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2095,7 +2064,7 @@ exports.buttons = {
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2134,7 +2103,7 @@ exports.grid = {
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2162,7 +2131,7 @@ exports.typeography = {
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2176,44 +2145,31 @@ exports.viewport = {
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //html for liverealod
-let filters = __webpack_require__(11);
+let filters = __webpack_require__(10);
 __webpack_require__(7);
 __webpack_require__(6);
-let filterEl = document.createElement("div");
-filterEl.innerHTML = filters;
-filterEl.style.display = "none";
-filterEl.setAttribute("id", "filters");
-document.body.appendChild(filterEl);
+let svgAssets = document.createElement("div");
+svgAssets.innerHTML = [
+    filters,
+].join("");
+svgAssets.style.display = "none";
+svgAssets.setAttribute("id", "svg-assets");
+document.body.appendChild(svgAssets);
 //styles
-__webpack_require__(10);
-//Bar
-__webpack_require__(8);
 __webpack_require__(9);
+//components
+__webpack_require__(8);
 const components = __webpack_require__(4).default.componentsJs;
 //isomorphic
 __webpack_require__(5).buttonFx(components);
 
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2227,7 +2183,7 @@ exports.push([module.i, ".button {\n  top: 40px;\n  cursor: pointer;\n  transiti
 
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2235,14 +2191,13 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\nhtml {\n  font-size: 100%;\n  -webkit-text-size-adjust: 100%;\n  -ms-text-size-adjust: 100%; }\n\nbody {\n  line-height: 1.5; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: Georgia, 'Times New Roman', serif;\n  font-weight: 400;\n  color: #000; }\n\nh1, .h1,\nh2, .h2,\nh3, .h3,\nh4, .h4,\nh5, .h5,\nh6, .h6 {\n  margin-top: 0;\n  padding-top: 0;\n  padding-bottom: 0;\n  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: bold; }\n\nh1, .h1 {\n  margin-bottom: 0.18756em;\n  font-size: 1.9994em;\n  line-height: 1.12534; }\n  @media (min-width: 43.75em) {\n    h1, .h1 {\n      margin-bottom: 0.13264em;\n      font-size: 2.82715em;\n      line-height: 1.06114; } }\n  @media (min-width: 56.25em) {\n    h1, .h1 {\n      margin-bottom: 0.09381em;\n      font-size: 3.99758em;\n      line-height: 0.93807; } }\n\nh2, .h2 {\n  margin-bottom: 0.26521em;\n  font-size: 1.414em;\n  line-height: 1.32603; }\n  @media (min-width: 43.75em) {\n    h2, .h2 {\n      margin-bottom: 0.18756em;\n      font-size: 1.9994em;\n      line-height: 1.12534; } }\n  @media (min-width: 56.25em) {\n    h2, .h2 {\n      margin-bottom: 0.13264em;\n      font-size: 2.82715em;\n      line-height: 1.06114; } }\n\nh3, .h3 {\n  margin-bottom: 0.26521em;\n  font-size: 1.414em;\n  line-height: 1.32603; }\n  @media (min-width: 56.25em) {\n    h3, .h3 {\n      margin-bottom: 0.18756em;\n      font-size: 1.9994em;\n      line-height: 1.12534; } }\n\nh4, .h4 {\n  margin-bottom: 0.26521em;\n  font-size: 1.414em;\n  line-height: 1.32603; }\n\nh5, .h5,\nh6, .h6 {\n  margin-bottom: 0.375em;\n  font-size: 1em;\n  line-height: 1.5; }\n\np {\n  margin-top: 0;\n  margin-bottom: 1.5em;\n  padding-top: 0;\n  padding-bottom: 0;\n  max-width: 36em; }\n  @media (min-width: 43.75em) {\n    p {\n      text-align: justify; } }\n\np + p {\n  margin-top: -1.5em;\n  text-indent: 1.5em; }\n\nsmall,\n.font-small {\n  font-size: 0.70721em;\n  line-height: 1.59075; }\n\nem {\n  font-style: italic; }\n\nstrong {\n  font-weight: bold; }\n\nblockquote {\n  margin-top: 1.5em;\n  margin-bottom: 1.5em;\n  margin-left: 0;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-left: 1.5em;\n  border-left: 6px solid gray;\n  font-family: Georgia, 'Times New Roman', serif; }\n  blockquote p {\n    margin-bottom: 0.75em; }\n  blockquote footer cite:before {\n    content: \" \\2013   \"; }\n\npre,\ncode {\n  font-family: Georgia, 'Times New Roman', serif; }\n\ntime,\n.time {\n  text-transform: uppercase; }\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1.5em;\n  margin-left: 1.5em;\n  padding-top: 0;\n  padding-bottom: 0; }\n\nul ul,\nol ol,\ndl dl {\n  margin-left: 0; }\n\nul {\n  list-style: disc; }\n\nol {\n  list-style: decimal; }\n\nabbr {\n  font-variant: small-caps;\n  font-weight: 600;\n  text-transform: lowercase; }\n\nabbr[title]:hover {\n  cursor: help; }\n\nhr {\n  margin-top: 1.5em;\n  margin-bottom: 0;\n  border: none;\n  border-top-color: #000;\n  border-top-style: solid;\n  border-top-width: 1px;\n  padding-top: 1.4375em; }\n\n.button {\n  top: 40px;\n  cursor: pointer;\n  transition: .3s all ease-in-out;\n  position: relative;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n  .button.basic {\n    text-transform: capitalize;\n    background-color: #eaeaea;\n    color: #000;\n    border-width: 1px;\n    border-style: solid;\n    border-color: #c4c4c4;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    border-radius: 2px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 12px;\n    padding-right: 12px;\n    font-size: 1rem;\n    font-weight: bold; }\n    .button.basic:focus {\n      outline: #7986cb auto 5px; }\n    .button.basic:hover {\n      box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22); }\n    .button.basic:hover {\n      background-color: #f7f7f7; }\n    .button.basic .button-text:empty:before {\n      content: \"okay\"; }\n  .button.primary {\n    text-transform: capitalize;\n    background-color: #eaeaea;\n    color: #000;\n    border-width: 1px;\n    border-style: solid;\n    border-color: #c4c4c4;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    border-radius: 2px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 12px;\n    padding-right: 12px;\n    font-size: 1rem;\n    font-weight: bold; }\n    .button.primary:focus {\n      outline: #7986cb auto 5px; }\n    .button.primary:hover {\n      box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22); }\n    .button.primary:hover {\n      background-color: #f7f7f7; }\n    .button.primary .button-text:empty:before {\n      content: \"okay\"; }\n  .button .button-text {\n    z-index: 2;\n    position: relative; }\n  .button .button-paint-layer {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 1; }\n\nbody {\n  background-color: #f7f7f7;\n  background-image: url(\"/portfolio/test.jpg\"); }\n\n.hide {\n  display: none; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\nhtml {\n  font-size: 100%;\n  -webkit-text-size-adjust: 100%;\n  -ms-text-size-adjust: 100%; }\n\nbody {\n  line-height: 1.5; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: Georgia, 'Times New Roman', serif;\n  font-weight: 400;\n  color: #000; }\n\nh1, .h1,\nh2, .h2,\nh3, .h3,\nh4, .h4,\nh5, .h5,\nh6, .h6 {\n  margin-top: 0;\n  padding-top: 0;\n  padding-bottom: 0;\n  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: bold; }\n\nh1, .h1 {\n  margin-bottom: 0.18756em;\n  font-size: 1.9994em;\n  line-height: 1.12534; }\n  @media (min-width: 43.75em) {\n    h1, .h1 {\n      margin-bottom: 0.13264em;\n      font-size: 2.82715em;\n      line-height: 1.06114; } }\n  @media (min-width: 56.25em) {\n    h1, .h1 {\n      margin-bottom: 0.09381em;\n      font-size: 3.99758em;\n      line-height: 0.93807; } }\n\nh2, .h2 {\n  margin-bottom: 0.26521em;\n  font-size: 1.414em;\n  line-height: 1.32603; }\n  @media (min-width: 43.75em) {\n    h2, .h2 {\n      margin-bottom: 0.18756em;\n      font-size: 1.9994em;\n      line-height: 1.12534; } }\n  @media (min-width: 56.25em) {\n    h2, .h2 {\n      margin-bottom: 0.13264em;\n      font-size: 2.82715em;\n      line-height: 1.06114; } }\n\nh3, .h3 {\n  margin-bottom: 0.26521em;\n  font-size: 1.414em;\n  line-height: 1.32603; }\n  @media (min-width: 56.25em) {\n    h3, .h3 {\n      margin-bottom: 0.18756em;\n      font-size: 1.9994em;\n      line-height: 1.12534; } }\n\nh4, .h4 {\n  margin-bottom: 0.26521em;\n  font-size: 1.414em;\n  line-height: 1.32603; }\n\nh5, .h5,\nh6, .h6 {\n  margin-bottom: 0.375em;\n  font-size: 1em;\n  line-height: 1.5; }\n\np {\n  margin-top: 0;\n  margin-bottom: 1.5em;\n  padding-top: 0;\n  padding-bottom: 0;\n  max-width: 36em; }\n  @media (min-width: 43.75em) {\n    p {\n      text-align: justify; } }\n\np + p {\n  margin-top: -1.5em;\n  text-indent: 1.5em; }\n\nsmall,\n.font-small {\n  font-size: 0.70721em;\n  line-height: 1.59075; }\n\nem {\n  font-style: italic; }\n\nstrong {\n  font-weight: bold; }\n\nblockquote {\n  margin-top: 1.5em;\n  margin-bottom: 1.5em;\n  margin-left: 0;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-left: 1.5em;\n  border-left: 6px solid gray;\n  font-family: Georgia, 'Times New Roman', serif; }\n  blockquote p {\n    margin-bottom: 0.75em; }\n  blockquote footer cite:before {\n    content: \" \\2013   \"; }\n\npre,\ncode {\n  font-family: Georgia, 'Times New Roman', serif; }\n\ntime,\n.time {\n  text-transform: uppercase; }\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1.5em;\n  margin-left: 1.5em;\n  padding-top: 0;\n  padding-bottom: 0; }\n\nul ul,\nol ol,\ndl dl {\n  margin-left: 0; }\n\nul {\n  list-style: disc; }\n\nol {\n  list-style: decimal; }\n\nabbr {\n  font-variant: small-caps;\n  font-weight: 600;\n  text-transform: lowercase; }\n\nabbr[title]:hover {\n  cursor: help; }\n\nhr {\n  margin-top: 1.5em;\n  margin-bottom: 0;\n  border: none;\n  border-top-color: #000;\n  border-top-style: solid;\n  border-top-width: 1px;\n  padding-top: 1.4375em; }\n\n.button {\n  top: 40px;\n  cursor: pointer;\n  transition: .3s all ease-in-out;\n  position: relative;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n  .button.basic {\n    text-transform: capitalize;\n    background-color: #eaeaea;\n    color: #000;\n    border-width: 1px;\n    border-style: solid;\n    border-color: #c4c4c4;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    border-radius: 2px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 12px;\n    padding-right: 12px;\n    font-size: 1rem;\n    font-weight: bold; }\n    .button.basic:focus {\n      outline: #7986cb auto 5px; }\n    .button.basic:hover {\n      box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22); }\n    .button.basic:hover {\n      background-color: #f7f7f7; }\n    .button.basic .button-text:empty:before {\n      content: \"okay\"; }\n  .button.primary {\n    text-transform: capitalize;\n    background-color: #eaeaea;\n    color: #000;\n    border-width: 1px;\n    border-style: solid;\n    border-color: #c4c4c4;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    border-radius: 2px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 12px;\n    padding-right: 12px;\n    font-size: 1rem;\n    font-weight: bold; }\n    .button.primary:focus {\n      outline: #7986cb auto 5px; }\n    .button.primary:hover {\n      box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22); }\n    .button.primary:hover {\n      background-color: #f7f7f7; }\n    .button.primary .button-text:empty:before {\n      content: \"okay\"; }\n  .button .button-text {\n    z-index: 2;\n    position: relative; }\n  .button .button-paint-layer {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 1; }\n\nbody {\n  background-color: #f7f7f7;\n  background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"param(fill) #000\" id=\"adjust\" viewBox=\"0 0 16 16\"><path d=\"M19 9.199c-.182 0-.799 0-.98 0-.553 0-1 .359-1 .801 0 .441.447.799 1 .799.182 0 .799 0 .98 0 .552 0 1-.357 1-.799C20 9.559 19.551 9.199 19 9.199zM10 4.5c-3.051 0-5.5 2.449-5.5 5.5 0 3.051 2.449 5.5 5.5 5.5 3.05 0 5.5-2.449 5.5-5.5C15.5 6.949 13.049 4.5 10 4.5zM10 14c-2.211 0-4-1.791-4-4 0-2.211 1.789-4 4-4V14zM3 10c0-.441-.449-.801-1-.801-.185 0-.816 0-1 0-.553 0-1 .359-1 .801 0 .441.447.799 1 .799.184 0 .815 0 1 0C2.551 10.799 3 10.441 3 10zM10 3c.441 0 .799-.447.799-1 0-.184 0-.816 0-1 0-.553-.358-1-.799-1C9.558 0 9.199.447 9.199 1c0 .184 0 .816 0 1C9.199 2.553 9.558 3 10 3zM10 17c-.442 0-.801.447-.801 1 0 .184 0 .816 0 1 0 .553.359 1 .801 1 .441 0 .799-.447.799-1 0-.184 0-.816 0-1C10.799 17.447 10.441 17 10 17zM17.365 3.766c.391-.391.454-.961.142-1.273s-.883-.248-1.272.143c-.108.107-.593.592-.7.699-.391.391-.454.961-.142 1.273s.883.248 1.273-.143C16.773 4.357 17.257 3.873 17.365 3.766zM3.334 15.533c-.108.109-.593.594-.7.701-.391.391-.454.959-.142 1.271s.883.25 1.272-.141c.108-.107.593-.592.7-.699.391-.391.454-.961.142-1.274S3.723 15.144 3.334 15.533zM3.765 2.635C3.375 2.244 2.804 2.18 2.492 2.492S2.244 3.375 2.633 3.766c.108.107.593.592.7.699.391.391.96.455 1.272.143s.249-.883-.141-1.273C4.357 3.227 3.873 2.742 3.765 2.635zM15.534 16.666c.108.107.593.592.7.699.391.391.96.453 1.272.143.312-.312.249-.883-.142-1.273-.107-.107-.592-.592-.699-.699-.391-.391-.961-.455-1.274-.143S15.143 16.275 15.534 16.666z\"></path></svg>');\n  background-size: 16px;\n  background-position: center; }\n\n.hide {\n  display: none; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 18 */
 /***/ (function(module, exports) {
 
 

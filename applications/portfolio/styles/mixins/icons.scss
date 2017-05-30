@@ -1,0 +1,11 @@
+@mixin icon(
+    $id,
+    $color: "#333",
+    $size: "16",
+    $library: "entypo"
+  ){
+      @debug "./icons/"+ $library +".svg#"+ $id +"?fill="+ $color +"&viewBox=0,0,"+ $size +","+ $size;
+    background-image: sprite("./icons/"+ $library +".svg#"+ $id +"?fill="+ $color +"&viewBox=0,0,"+ $size +","+ $size );
+    background-size: #{$size}px;
+    background-position: center;
+}

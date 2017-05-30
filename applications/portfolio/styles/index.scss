@@ -4,9 +4,7 @@
 @function query($key){
      @return unquote(map-get($style, $key ))
 }
-
 @import '~normalize-scss/sass/_normalize.scss';
-
 $font-sans:             config( "typeography.sans" );
 $font-serif:            config( "typeography.serif" );
 $font-mono:             config( "typeography.serif" );
@@ -21,16 +19,17 @@ $paragraph-justify:     config( "typeography.paragraph-justify" );
 $load-typesetted:       config( "typeography.load-typesetted" );
 $global-init:           config( "typeography.global-init" );
 
-@import "./mixins/em";
 @import "./mixins/parallax";
 @import '~jeet/scss/index';
 @import "~typesettings/_typesettings";
 @import "./components/button.scss";
+@import "./mixins/icons";
 
 body{
     background-color: config( "skin.base" );
-    background-image: url("/portfolio/test.jpg");
+    @include icon("adjust","blue");
 }
+//sprite("./icons/icomoon.svg#crop?fill=blue&viewBox=0,0,16,16 ")
 
 .hide{
     display: none;

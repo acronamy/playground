@@ -8,6 +8,8 @@ import * as SassUtils from "node-sass-utils";
 import * as yargs from "yargs";
 import * as tinyColor from "tinycolor2";
 import * as htmlClean from "htmlclean";
+import * as querystring from "querystring";
+import * as cheerio from "cheerio";
 
 const env = yargs.argv.env;
 const sassUtils = SassUtils(nodeSass);
@@ -28,7 +30,7 @@ const colorLibrary = path.join(process.cwd(), "applications", env.application, "
 const styleConfig = path.join(process.cwd(), "applications", env.application, "config", "style.ts");
 const shadowConfig = path.join(process.cwd(), "applications", env.application, "config", "components", "shadow.component.ts");
 const tsConfig = require(path.join(process.cwd(), "applications", env.application, "tsconfig.json"))
-const svgFiltersDir = path.join(process.cwd(), "applications", env.application, "media" )
+const svgDir = path.join(process.cwd(), "applications", env.application, "templates", "svg" )
 
 const tsImporter = builder(/\.ts$/, function(filepath) {
     //transpile with ts-node the target ts file
@@ -47,10 +49,52 @@ const options = {
             tsImporter,
         ],
         functions:{
-            'svg($path)':function(svgPath){
-                svgPath = sassUtils.castToJs(svgPath);
-                let svg = "data:image/svg+xml;utf8,"+ htmlClean( fs.readFileSync(path.join(svgFiltersDir, svgPath) , "utf8") )
-                console.log(window)
+            'sprite($path)':function(svgParams){
+                svgParams = sassUtils.castToJs(svgParams);
+                const file = svgParams.split("#")[0];
+                const symbolID = "#"+svgParams.split(/#(.+)/)[1].split("?")[0]
+                let queryParams = svgParams.split("?").pop();
+
+                queryParams = querystring.parse(queryParams);
+                let fileRead = htmlClean( fs.readFileSync(path.join(svgDir, file) , "utf8") )
+                let $ = cheerio.load(fileRead);
+                let spriteTarget = $('svg').find(symbolID)
+                //console.log(spriteTarget)
+                let checkAttrs = [
+                    "fill",
+                    "viewBox",
+                    "width",
+                    "height"
+                ]
+                Object.keys(queryParams).forEach(function(param){
+                    //check attrs
+                    checkAttrs.forEach(attr=>{
+                        let hasParam = spriteTarget.find(`[${attr}^="param(${param}"]`)
+                        if(hasParam.length>=0){
+                            hasParam.each(function(){
+                                $(this).attr(attr,queryParams[param])
+                            })
+                        }
+                    })
+                    
+                })
+                if(queryParams.viewBox){
+                    spriteTarget.removeAttr("viewbox")
+                    let viewBox = queryParams.viewBox.replace(/\s/g,"");
+                    
+                    spriteTarget.attr("viewBox",viewBox.split(",").join(" "))
+                }
+                if(queryParams.width){
+                    let width = queryParams.width;
+                    spriteTarget.attr("width",queryParams.width)
+                }
+                if(queryParams.height){
+                    let height = queryParams.height;
+                    spriteTarget.attr("height",queryParams.height)
+                }
+                let newSvgSprite = $.html(spriteTarget).replace(/symbol/g,"svg")
+                console.log(newSvgSprite)
+                let svg = `url('data:image/svg+xml;utf8,${$.html(spriteTarget).replace(/symbol/g,"svg")}')`
                 return sassUtils.castToSass(svg)
             },
             'convert($string)':function(string){
